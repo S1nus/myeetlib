@@ -1,2 +1,2 @@
 pub mod myeet_types;
-pub mod server;
+pub mod myeet_error;
