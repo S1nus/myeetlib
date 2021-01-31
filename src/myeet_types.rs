@@ -58,6 +58,7 @@ pub enum QueueMessage {
     },
 }
 
+#[derive(Serialize, Deserialize, Debug)]
 pub enum ClientMessage {
     Auth {
         client_id: String,
@@ -73,6 +74,19 @@ pub enum ClientMessage {
         client_id: String,
         chat_id: String,
         message_text: String,
+    }
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub enum OutgoingClientMessage {
+    UserChat {
+        id: String,
+        messages: Vec<OutgoingClientMessage>
+    },
+    ChatMessage {
+        from: String,
+        text: String,
+        when: usize,
     }
 }
 
