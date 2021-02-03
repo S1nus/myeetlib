@@ -1,5 +1,6 @@
 use std::error::Error;
 use std::fmt;
+use mysql::Error as MysqlError;
 
 #[derive(Debug)]
 pub struct MyeetErr {
@@ -27,6 +28,14 @@ impl fmt::Display for MyeetErr {
         }
         else {
             write!(f, "no error info")
+        }
+    }
+}
+
+impl From<MysqlError> for MyeetErr {
+    fn from(m: MysqlError) -> Self {
+        MyeetErr {
+            message: Some("Error with database".to_owned())
         }
     }
 }

@@ -79,9 +79,13 @@ pub enum ClientMessage {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub enum OutgoingClientMessage {
+    UserChatList {
+        user_chats: Vec<OutgoingClientMessage>
+    },
     UserChat {
         id: String,
-        messages: Vec<OutgoingClientMessage>
+        messages: Vec<OutgoingClientMessage>,
+        people: Vec<String>,
     },
     ChatMessage {
         from: String,
